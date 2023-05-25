@@ -1,51 +1,57 @@
-import {MigrationInterface, QueryRunner, Table, TableColumn, TableForeignKey } from "typeorm";
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableColumn,
+  TableForeignKey,
+} from 'typeorm';
 
 export class BookMigration1641649207762 implements MigrationInterface {
+  public async up(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.createTable(
+      new Table({
+        name: 'books',
+        columns: [
+          {
+            name: 'id',
+            type: 'int',
+            isPrimary: true,
+            isGenerated: true,
+            generationStrategy: 'increment',
+          },
+          {
+            name: 'title',
+            type: 'varchar',
+          },
+          {
+            name: 'description',
+            type: 'varchar',
+          },
+          {
+            name: 'thumbnail',
+            type: 'varchar',
+          },
+          {
+            name: 'author',
+            type: 'varchar',
+          },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+        ],
+      }),
+      true,
+    );
+  }
 
-    public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.createTable(new Table({
-            name: "books",
-            columns: [
-                {
-                    name: "id",
-                    type: "int",
-                    isPrimary: true,
-                    isGenerated: true,
-                    generationStrategy: 'increment',
-                },
-                {
-                    name: "title",
-                    type: "varchar",
-                },
-                {
-                    name: "description",
-                    type: "varchar",
-                },
-                {
-                    name: "thumbnail",
-                    type: "varchar",
-                },
-                {
-                    name: "author",
-                    type: "varchar",
-                },
-                {
-                    name: 'created_at',
-                    type: 'timestamp',
-                    default: 'now()'
-                },
-                {
-                    name: 'updated_at',
-                    type: 'timestamp',
-                    default: 'now()'
-                }
-            ]
-        }), true)
-
-    }
-
-    public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("books");
-    }
-
+  public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.dropTable('books');
+  }
 }

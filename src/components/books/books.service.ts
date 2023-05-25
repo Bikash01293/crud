@@ -10,22 +10,26 @@ export class BooksService {
     private booksRepository: Repository<Book>,
   ) {}
 
-  async create(data: object)  {
-    return await this.booksRepository.save(data).then(res => res);
+  async create(data: object) {
+    return await this.booksRepository.save(data).then((res) => res);
   }
 
   findAll(): Promise<Book[]> {
-    return this.booksRepository.find()
+    return this.booksRepository.find();
   }
 
   findOne(id: number): Promise<Book> {
     return this.booksRepository.findOne(id);
   }
 
-  async update(id:number, data: object): Promise<Book | UpdateResult | undefined> {
-    const book = await this.findOne(id).then(res =>res);
-    if(book) return await this.booksRepository.update(id, data).then(res => res);
-    return ;
+  async update(
+    id: number,
+    data: object,
+  ): Promise<Book | UpdateResult | undefined> {
+    const book = await this.findOne(id).then((res) => res);
+    if (book)
+      return await this.booksRepository.update(id, data).then((res) => res);
+    return;
   }
 
   async remove(id: number) {

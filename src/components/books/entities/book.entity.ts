@@ -18,12 +18,12 @@ export class Books {
   @Column()
   author: string;
 
-  @Column({ default: null, type:"datetime" })
-  created_at?:  Date;
+  @Column({ default: null, type: 'datetime' })
+  created_at?: Date;
 
-  @Column({ default: null, type:"datetime" })
-  updated_at?:  Date;
+  @Column({ default: null, type: 'datetime' })
+  updated_at?: Date;
 
-  @ManyToOne(() => User, user => user.books)
-    user: User;
+  @ManyToOne(() => User, (user) => user.books)
+  user: User;
 }

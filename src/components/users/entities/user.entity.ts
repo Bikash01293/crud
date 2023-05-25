@@ -15,12 +15,12 @@ export class Users {
   @Column()
   password?: string;
 
-  @Column({ default: null, type:"datetime"})
-  created_at?:  Date;
+  @Column({ default: null, type: 'datetime' })
+  created_at?: Date;
 
-  @Column({ default: null, type:"datetime"})
-  updated_at?:  Date;
+  @Column({ default: null, type: 'datetime' })
+  updated_at?: Date;
 
-  @OneToMany(() => Book, book => book.user)
-    books?: Book[];
+  @OneToMany(() => Book, (book) => book.user)
+  books?: Book[];
 }
